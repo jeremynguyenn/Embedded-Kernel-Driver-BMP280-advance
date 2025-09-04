@@ -83,7 +83,7 @@ Ensure it's properly connected to your Raspberry Pi's I2C-1 bus. These should be
 3. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/Leonardo-Blanger/bmp280-iio.git
+    git clone https://github.com/jeremynguyenn/Embedded-Kernel-Driver-BMP280-advance.git
     cd bmp280-iio
     ```
 
@@ -394,7 +394,7 @@ I implemented a second module uses the in-kernel IIO consumer interface to query
 
 <img src="images/lcd-monitor.jpg" height=512>
 
-This module is called `bmp280-hd44780-monitor`, and the sources are in the `lcd-monitor` directory. It depends on our main `bmp280-iio` module, as well as another driver I wrote, for the HD44780 display, available on [this repo](https://github.com/Leonardo-Blanger/hd44780). Please, follow the README instructions on that repository to set up and use the HD44780 display. After you have both drivers, `bmp280-iio` and `hd44780`, built and loaded, proceed with the following instructions.
+This module is called `bmp280-hd44780-monitor`, and the sources are in the `lcd-monitor` directory. It depends on our main `bmp280-iio` module, as well as another driver I wrote, for the HD44780 display, available on [this repo](https://github.com/jeremynguyenn/Embedded-Kernel-Driver-BMP280-advance.git). Please, follow the README instructions on that repository to set up and use the HD44780 display. After you have both drivers, `bmp280-iio` and `hd44780`, built and loaded, proceed with the following instructions.
 
 1. **Build the module and device tree overlay.** For this, you will need to tell the build system about the exported symbol table for the dependency `hd44780` module. These are in the `Module.symvers` file, created on the root of the hd44780 project after you build it.
 
@@ -450,6 +450,4 @@ Some resources I found useful as I was learning about these topics:
 
 	Great book with a focus on driver development, with very detailed chapters on I2C and the IIO subsystem.
 
-* The [Johannes 4GNU_Linux](https://www.youtube.com/@johannes4gnu_linux96) Youtube channel.
 
-	This channel has a great playlist about driver development, and it's where I got the idea of writing a driver for the BMP280 as an excercise.
