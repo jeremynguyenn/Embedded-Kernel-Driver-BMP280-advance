@@ -18,7 +18,7 @@
 
 #include "bmp280.h"
 
-MODULE_AUTHOR("Leonardo Blanger");
+MODULE_AUTHOR("Nguyen Nhan");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An IIO compatible, I2C driver for the Bosch BMP280 "
 		   "temperature and pressure sensor.");
