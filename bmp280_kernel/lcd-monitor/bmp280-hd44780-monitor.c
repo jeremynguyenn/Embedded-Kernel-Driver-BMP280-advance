@@ -19,7 +19,7 @@
 #include <linux/types.h>
 #include <linux/workqueue.h>
 
-MODULE_AUTHOR("Leonardo Blanger");
+MODULE_AUTHOR("Nguyen Nhan");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("BMP280 live monitoring module "
 		   "using the HD44780 character LCD display.");
