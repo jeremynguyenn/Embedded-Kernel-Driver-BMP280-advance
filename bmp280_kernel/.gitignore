@@ -1,0 +1,10 @@
+README.html
+modules.order
+Module.symvers
+*.o
+*.ko
+*.cmd
+*.mod
+*.mod.c
+*.dtbo
+*.wip.*

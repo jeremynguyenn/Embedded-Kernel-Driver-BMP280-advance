@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+  // Note: From checking the device tree files in the kernel sources at
+  // `arch/{arm,arm64}/boot/dts/broadcom`, I suspect these strings should be
+  // enough to target all Raspberry Pi models. Nonetheless, I only tested this
+  // on RPi5.
+  compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2837",
+    "brcm,bcm2711", "brcm,bcm2712";
+
+  fragment@0 {
+    // Since this is for a platform driver, we do not target any specific bus
+    target-path = "/";
+    __overlay__ {
+      // Use your own name or some other keyword, to minimize the risk of
+      // clashes.
+      leonardo_bmp280_hd44780_monitor: leonardo_bmp280_hd44780_monitor {
+	compatible = "leonardo,bmp280-hd44780-monitor";
+	label = "Leonardo's BMP280 I2C IIO driver";
+	io-channels = <&leonardo_bmp280_iio 4>, <&leonardo_bmp280_iio 15>;
+	io-channel-names = "temperature", "pressure";
+      };
+    };
+  };
+ };

@@ -1,0 +1,43 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+  // Note: From checking the device tree files in the kernel sources at
+  // `arch/{arm,arm64}/boot/dts/broadcom`, I suspect these strings should be
+  // enough to target all Raspberry Pi models. Nonetheless, I only tested this
+  // on RPi5.
+  compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2837",
+    "brcm,bcm2711", "brcm,bcm2712";
+
+  fragment@0 {
+    // &i2c1 is the user exposed I2C bus on Raspberry Pi.
+    target = <&i2c1>;
+    __overlay__ {
+      // Explicitly enables the bus. This takes precedence if it was previously
+      // disabled on the device tree.
+      status = "okay";
+      // I2C devices have a single address cell.
+      #address-cells = <1>;
+      #size-cells = <0>;
+
+      // Use your own name or some other keyword, to minimize the risk of
+      // clashes. Replace 76 with your sensor's I2C address
+      leonardo_bmp280_iio: leonardo_bmp280_iio@76 {
+	compatible = "leonardo,bmp280-iio";
+	reg = <0x76>; // Replace 76 with your sensor's I2C address
+	label = "Leonardo's BMP280 I2C IIO driver";
+	// To expose the IIO channels to the rest of the kernel
+	#io-channel-cells = <1>;
+      };
+    };
+  };
+
+  __exports__ {
+      leonardo_bmp280_iio;
+  };
+
+  __overrides__ {
+    // Allow the I2C address to be overridden via the command line
+    address = <&leonardo_bmp280_iio>,"reg:0";
+  };
+ };
